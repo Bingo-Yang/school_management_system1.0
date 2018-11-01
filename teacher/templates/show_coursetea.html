@@ -1,0 +1,40 @@
+{% extends 'base.html' %}
+{% block main %}
+    <form action="/teach/coursetea/" method="post" style="align-content: center">
+    {% csrf_token %}
+    <table align="center" style="margin-top: 50px;" >
+    <h1 style="text-align: center">任课老师查询</h1>
+        <hr>
+    <tr>
+        <td>请输入查询条件: <select name="query" id="">
+            <option value="任课科目编号">任课科目编号</option>
+            <option value="教师编号">教师编号</option>
+        </select>
+        </td>
+        <td><input type="text" name="course" ><input type="submit" value="提交" name="提交"></td>
+    </tr>
+    </table>
+        <table align="center" border="3" cellspacing="1" cellpadding="0" width="1000px;"
+               style="text-align: center; margin-top: 50px;font-size: 16px;border-color: #0000FF;">
+    <tr>
+        <td>教师编号</td>
+        <td>教师姓名</td>
+        <td>教师性别</td>
+        <td>教师所属专业</td>
+        <td>任课科目</td>
+        <td>任课日期</td>
+    </tr>
+        {% for ctc in ct_course %}
+    <tr>
+        <td>{{ ctc.teacher.tea_id }}</td>
+        <td>{{ ctc.teacher.tea_name }}</td>
+        <td>{{ ctc.teacher.tea_gender }}</td>
+        <td>{{ ctc.teacher.major.maj_name }}</td>
+        <td>{{ ctc.course.cour_name }}</td>
+        <td>{{ ctc.tea_in_date }}</td>
+    </tr>
+        {% endfor %}
+    </table>
+    </form>
+
+{% endblock %}

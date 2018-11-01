@@ -1,0 +1,65 @@
+{% extends 'base.html' %}
+
+{% block main %}
+    <form action="/archive/student/" method="post" enctype="multipart/form-data">
+        {% csrf_token %}
+    <div style="border: 5px solid brown; border-radius: 20px;margin: 80px 20% 0 20%">
+        <table align="center" width="700px" style="margin-top: 20px;">
+            <caption><h2>学生信息注册</h2></caption>
+            <tr style="height: 50px">
+                <td><label for="clazz">学生班级</label></td>
+                <td>
+                    <select name="clazz" id="clazzz">
+                            <option value="-1">-请选择班级-</option>
+                        {% for clazz in clazzs %}
+                            <option value="{{ clazz.cls_name }}">-{{ clazz.cls_name }}-</option>
+                        {% endfor %}
+                    </select>
+                </td>
+                <td><label for="gender">学生性别</label></td>
+                <td>
+                    <input name="gender" type="radio" id="ge" checked="checked" value="男"/>男
+                    <input name="gender" id="ge" type="radio" value="女"/>女
+                </td>
+            </tr>
+            <tr style="height: 50px">
+                <td><label for="id">学生编号</label></td>
+                <td><input type="text" name="id" id="id"></td>
+                <td><label for="na">学生姓名</label></td>
+                <td><input type="text" name="name" id="na"></td>
+            </tr>
+            <tr style="height: 50px">
+                <td><label for="poli">政治面貌</label></td>
+                <td><input type="text" name="political" id="poli"></td>
+                <td><label for="hea">健康状况</label></td>
+                <td><input type="text" name="healthy" id="hea"></td>
+            </tr>
+            <tr style="height: 50px">
+                <td><label for="in">身份证号</label></td>
+                <td><input type="text" name="id_num" id="in"></td>
+                <td><label for="bir">出生日期</label></td>
+                <td><input type="date" name="birth" id="bir"></td>
+            </tr>
+            <tr style="height: 50px">
+                <td><label for="nat">民&emsp;族</label></td>
+                <td><input type="text" name="nation" id="nat"></td>
+                <td><label for="ag">学生年龄</label></td>
+                <td><input type="text" name="age" id="ag"></td>
+            </tr>
+            <tr style="height: 50px">
+                <td><label for="ad">家庭住址</label></td>
+                <td><input type="text" name="addr" id="ad"></td>
+                <td><label for="pho">家庭电话</label></td>
+                <td><input type="text" name="phone" id="pho"></td>
+            </tr>
+        </table>
+        <table align="center" width="700px" style="height: 50px;margin-bottom: 20px;">
+            <tr>
+                <td><input type="submit" value="提交" style="margin-left: 200px"></td>
+                <td><input type="reset" value="重置" ></td>
+                <td width="300px"></td>
+            </tr>
+        </table>
+    </div>
+    </form>
+{% endblock %}

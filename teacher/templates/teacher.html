@@ -1,0 +1,45 @@
+{% extends 'base.html' %}
+{% block main %}
+    <h1 style="text-align: center">教职任课表</h1>
+    <hr>
+    <form action="/teach/show/" method="post" >
+        {% csrf_token %}
+    <div style="border: 5px solid brown; border-radius: 20px;margin: 80px 20% 0 20%">
+        <label for="" style="margin-left: 15%;margin-top: 20px"> 教师编号:<input type="text" name="t_id"></label>
+        <label for="" style="margin-left: 70px;margin-top: 20px">任职科目:
+        {% for cs in cose %}
+                <input type="checkbox" name="tea_course" value="{{ cs.cour_id }}"/>{{ cs.cour_name }}
+        {% endfor %}
+        </label>
+        <label for="" style="margin-left: 70px;margin-top: 20px">  任职日期<input type="date" name="tea_date"></label>
+
+        <table align="center" width="850px" style="margin-top: 20px;text-align: center" border="1">
+            <tr style="height: 32px;font-size: 20px;color: brown;">
+                <td>教师编号</td>
+                <td>教师姓名</td>
+                <td>性别</td>
+                <td>年龄</td>
+                <td>学历</td>
+                <td>授课专业</td>
+                <td>婚否</td>
+            </tr>
+            {% for txx in teaxinxis %}
+            <tr style="height: 32px;font-size: 20px;">
+                <td>{{ txx.tea_id }}</td>
+                <td>{{ txx.tea_name }}</td>
+                <td>{{ txx.tea_gender }}</td>
+                <td>{{ txx.tea_age }}</td>
+                <td>{{ txx.tea_edu }}</td>
+                <td>{{ txx.major.maj_name}}</td>
+                <td>{{ txx.tea_marry}}</td>
+            </tr>
+            {% endfor %}
+            <tr style="height: 32px;font-size: 20px;">
+                <input type="submit" href="/teach/show/" value="提交" style="margin-left: 20%; margin-top: 20px;" name="submit">
+                <input type="reset" value="重置" style="margin-left: 50px; margin-top: 20px;" name="submit">
+                <a href="/teach/querytea/" style="margin-left: 50px;font-size: 18px;color: blue">查询任课老师任课情况，请点我！</a>
+            </tr>
+        </table>
+</div>
+    </form>
+{% endblock %}

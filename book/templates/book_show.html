@@ -1,0 +1,55 @@
+{% extends 'base.html' %}
+{% load staticfiles %}
+{% block main %}
+    <hr>
+    <br>
+    <form action="/book/book_show/" method="post">
+    {% csrf_token %}
+        <table style="margin: 0 auto;width: 340px">
+{#    图书信息展示        #}
+            <tr>
+                <td><select name="choice" id="addNew">
+                <option value="book_id">编号</option>
+                <option value="book_name">书名</option>
+                <option value="book_author">作者</option>
+                <option value="book_category">种类</option>
+                </select></td>
+                <td><input type="text" name="content"></td>
+                <td><input type="submit" value="查询"></td>
+                <td><a href="/book/book_show/">展示所有</a></td>
+            </tr>
+        </table>
+        <table  aline="center" border="5" cellpadding="6" cellspacing="0"  width="900" style="margin: 30px auto;">
+            <tr align="center" style="height: 45px;font-size: 18px;">
+                <td style="color: brown;">书号</td>
+                <td style="color: brown;">书名</td>
+                <td style="color: brown;">作者</td>
+                <td style="color: brown;">种类</td>
+                <td style="color: brown;">出版社</td>
+                <td style="color: brown;">登记员</td>
+                <td style="color: brown;">价格</td>
+                <td style="color: brown;">总数量</td>
+                <td style="color: brown;">发行日期</td>
+                <td style="color: brown;">入库日期</td>
+                <td style="color: brown;">修改</td>
+            </tr>
+{#            {{ book }}#}
+            {% for bo in book %}
+                 <tr align="center" style="height: 35px;font-size: 15px;">
+                    <td>{{ bo.book_id }}</td>
+                    <td>{{ bo.book_name }}</td>
+                    <td>{{ bo.book_author}}</td>
+                    <td>{{ bo.book_category }}</td>
+                    <td>{{ bo.book_pub }}</td>
+                    <td>{{ bo.book_operator }}</td>
+                    <td>{{ bo.book_price }}</td>
+                    <td>{{ bo.book_put_num }}</td>
+                    <td>{{ bo.book_pub_date|date:'Y-m-d' }}</td>
+                    <td>{{ bo.book_put_date|date:'Y-m-d' }}</td>
+                    <td><a href="/book/book_maintain/{{ bo.book_id }}" ><input type="button" value="修改"> </a></td>
+                </tr>
+            {% endfor %}
+
+        </table>
+    </form>
+{% endblock %}

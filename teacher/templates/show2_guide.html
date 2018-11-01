@@ -1,0 +1,37 @@
+{% extends 'base.html' %}
+{% block main %}
+    <form action="/teach/showguide/" method="post">
+    {% csrf_token %}
+    <table align="center" style="margin-top: 50px;">
+    <tr>
+        <td>请输入查询条件: <select name="query" id="">
+            <option value="年级编号">年级编号</option>
+            <option value="班级编号">班级编号</option>
+        </select>
+        </td>
+        <td><input type="text" name="grade"><input type="submit" value="提交"></td>
+    </tr>
+    </table>
+    <table align="center" border="3" cellspacing="0" cellpadding="0" width="1000px;" style="text-align: center; margin-top: 50px;font-size: 16px;border-color: #0000FF">
+    <tr>
+        <td>教师编号</td>
+        <td>教师姓名</td>
+        <td>教师性别</td>
+        <td>教师专业</td>
+        <td>教师年龄</td>
+        <td>教师学历</td>
+    </tr>
+        {% for ta in tal %}
+    <tr>
+            <td>{{ ta.tea_id }}</td>
+            <td>{{ ta.tea_name}}</td>
+            <td>{{ ta.tea_gender }}</td>
+            <td>{{ ta.major.maj_name }}</td>
+            <td>{{ ta.tea_age }}</td>
+            <td>{{ ta.tea_edu }}</td>
+{#            <td><a href="/login/show3/?num={{ te.headteacher.teacher.te_id }}">离职</a></td>#}
+    </tr>
+         {% endfor %}
+    </table>
+    </form>
+{% endblock %}

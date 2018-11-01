@@ -1,0 +1,48 @@
+{% extends 'base.html' %}
+{% load staticfiles %}
+{% block main %}
+{#  图书登记  #}
+<form action="/book/book_register/" method="post">
+{% csrf_token %}
+<div style="border: 5px solid brown; border-radius: 40px;margin: 100px 30% 0 25%">
+<table style="margin: 30px auto 0 ;">
+
+    <tr style="height: 32px;font-size: 20px;">
+        <td>&emsp;书号：&emsp;&emsp;&emsp;<input type="text" name="book_id"></td>
+        <td>&emsp;&emsp;书名：&emsp;&emsp;&emsp;<input type="text" name="book_name"></td>
+    </tr>
+    <tr style="height: 32px;font-size: 20px;">
+        <td>&emsp;作者：&emsp;&emsp;&emsp;<input type="text" name="book_author"></td>
+        <td>&emsp;&emsp;种类：&emsp;&emsp;&emsp;<input type="text" name="book_category"></td>
+    </tr>
+    <tr style="height: 32px;font-size: 20px;">
+        <td>&emsp;出版社：&emsp;&emsp;<input type="text" name="book_pub"></td>
+        <td>&emsp;&emsp;图书数量：&emsp;<input type="text" name="book_put_num"></td>
+
+    </tr>
+    <tr style="height: 32px;font-size: 20px;">
+        <td>&emsp;价格：&emsp;&emsp;&emsp;<input type="text" name="book_price"></td>
+        <td>&emsp;&emsp;登记员：&emsp;&emsp;<input type="text" name="book_operator"></td>
+    </tr>
+    <tr style="height: 32px;font-size: 20px;">
+        <td>&emsp;登录日期：&emsp;<input type="date" name="book_put_date"></td>
+        <td>&emsp;&emsp;出版日期：&emsp;<input type="date" name="book_pub_date"></td>
+{#        <td>&emsp;出版日期：&emsp;&emsp;<input type="date"></td>#}
+
+    </tr>
+    <tr style="height: 32px;font-size: 20px;">
+        <td>&emsp;图书简介：&emsp;<input type="text" name="book_intro"></td>
+    </tr>
+
+
+</table>
+<br>
+<table style="margin: 5px auto 25px">
+    <tr>
+        <td>&emsp;&emsp;<input type="submit" value="保存"></td>
+        <td>&emsp;&emsp;<input type="reset" value="重置"></td>
+    </tr>
+</table>
+</div>
+</form>
+{% endblock %}

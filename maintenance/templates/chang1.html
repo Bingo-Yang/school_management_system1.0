@@ -1,0 +1,23 @@
+{% extends 'base.html' %}
+
+
+
+{% block main %}
+<form action="/maintenance/change1/{{ code }}/{{ name }}/1" method="post">
+{% csrf_token %}
+
+<table align="center" width="700px" style="text-align: center;" border="1" cellspacing="0" cellpadding="0">
+    <tr>
+        <td>年级代码</td>
+        <td>年级名称</td>
+        <td colspan="2">用户操作</td>
+    </tr>
+    <tr>
+        <td><input type="text" name="code" value="{{ code }}"></td>
+        <td><input type="text" name="name" value="{{ name }}"></td>
+        <td><input type="reset" value="重置"></td>
+        <td><input type="submit" value="提交"></td>
+    </tr>
+</table>
+</form>
+{% endblock %}

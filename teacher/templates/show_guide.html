@@ -1,0 +1,43 @@
+{% extends 'base.html' %}
+{% block main %}
+    <form action="/teach/showguide/" method="post">
+    {% csrf_token %}
+    <h1 style="text-align: center">班主任任课情况查询</h1>
+        <hr>
+    <table align="center" style="margin-top: 50px;">
+    <tr>
+        <td>请输入查询条件: <select name="query" id="">
+            <option value="班级编号">班级编号</option>
+            <option value="年级编号">年级编号</option>
+        </select>
+        </td>
+        <td><input type="text" name="clazz"><input type="submit" value="提交"></td>
+    </tr>
+    </table>
+    <table align="center" border="3" cellspacing="0" cellpadding="0" width="1000px;" style="text-align: center; margin-top: 50px;font-size: 16px;border-color: #0000FF">
+    <tr>
+        <td>教师编号</td>
+        <td>教师姓名</td>
+        <td>教师性别</td>
+        <td>年级名称</td>
+        <td>任职班级</td>
+        <td>教师专业</td>
+        <td>任职日期</td>
+{#        <td>维护</td>#}
+    </tr>
+      {% for gc in g_clazz %}
+    <tr>
+        <td>{{ gc.teacher.tea_id }}</td>
+        <td>{{ gc.teacher.tea_name }}</td>
+        <td>{{ gc.teacher.tea_gender }}</td>
+        <td>{{ gc.clazz.grade.gra_name }}</td>
+        <td>{{ gc.clazz.cls_name }}</td>
+        <td>{{ gc.teacher.major.maj_name }}</td>
+        <td>{{ gc.ht_in_date }}</td>
+{#        <td><a href="/teach/showguide/?id={{ gc.teacher_id}}">离职</a></td>#}
+
+    </tr>
+         {% endfor %}
+    </table>
+    </form>
+{% endblock %}

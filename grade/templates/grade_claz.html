@@ -1,0 +1,51 @@
+{% extends 'base.html' %}
+
+
+{% block main %}
+    <br><br><br>
+    <form action="/grade/grade_claz/" method="post">
+    {% csrf_token %}
+        <p align="center" style="height: 35px;font-size: 16px;">
+        <label for="clz" style="font-size: 16px;">班级：</label>
+            &emsp;
+
+        <select name="clazz" id="clz">
+            {% for cl in clz %}
+            <option value ="{{ cl.c_id }}">{{ cl.cls_name }}</option>
+            {% endfor %}
+        </select>
+
+            &emsp;
+        <label for="aa" style="font-size: 16px;">考试类别：</label>
+             &emsp;
+            <select id="aa" name="test_category" >
+                <option value ="期末考试">期末考试</option>
+                <option value ="期中考试">期中考试</option>
+                <option value="月考">月考</option>
+            </select>
+            &emsp;
+        <input type="submit" value="查询">
+        </p>
+        <table border="3" align="center" cellspacing="0" cellpadding="0" width="700px" style="text-align: center;margin-top: 40px">
+
+            <tr style="height: 35px;font-size: 18px;color: brown">
+                <td>学生姓名</td>
+                <td>考试类别</td>
+                {% for cu in course %}
+                <td>{{ cu.cour_name }}</td>
+                {% endfor %}
+                <td>总分数</td>
+
+            </tr>
+            {% for data,sc in datas.items %}
+            <tr style="height: 30px;font-size: 15px;">
+                <td>{{ data }}</td>
+                <td>{{ test_category }}</td>
+                {% for s in sc %}
+                    <td>{{ s }}</td>
+                {% endfor %}
+            </tr>
+            {% endfor %}
+        </table>
+    </form>
+{% endblock %}

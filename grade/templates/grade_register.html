@@ -1,0 +1,53 @@
+{% extends 'base.html' %}
+
+
+{% block main %}
+    <form action="/grade/grade_register/" method="post">
+    {% csrf_token %}
+        <br><br>
+        <table align="center" width="700px">
+           <tr style="height: 50px">
+
+               <td><label for="stu_id">学生编号：</label></td>
+               <td><input type="text" name="stu_id" id="stu_id" onblur="checkCode()" value="{{ stu.stu_id }}"><span id="codespan" ></span></td>
+               <td><label for="name">学生姓名：</label></td>
+               <td><input type="text" name="stu_name" id="name" onblur="checkName()" value="{{ stu.stu_name }}"><span id="namespan"></span></td>
+           </tr>
+           <tr>
+               <td><label for="aa">考试类别：</label></td>
+               <td>
+                   <select id="aa" name="test_category">
+                       <option value ="-1">-考试类别-</option>
+                      <option value="月考">-&emsp;月考&emsp;-</option>
+                      <option value ="期中考试">-期中考试-</option>
+                      <option value ="期末考试">-期末考试-</option>
+                    </select>
+               </td>
+               <td><label for="cls">学生班级：</label></td>
+               <td><input type="text" name="clazz" id="cls" onblur="clss()" value="{{ stu.clazz.cls_name }}"><span id="clsspan"></span></td>
+           </tr>
+        </table>
+
+
+        <table border="1" align="center" cellspacing="0" cellpadding="0" width="700px" style="text-align: center;margin-top: 40px">
+            <tr style="height: 35px;font-size: 18px;color: brown">
+                <td>考试科目</td>
+                <td>考试成绩</td>
+            </tr>
+            {% for co in course %}
+            <tr style="height: 30px;font-size: 15px;">
+                <td width="350px">{{ co.cour_name }}</td>
+                <td><input type="text" name="{{ co.cour_name }}"></td>
+            </tr>
+            {% endfor %}
+        </table>
+        <table align="center" style="margin-top: 35px">
+            <tr>
+                <td><input type="submit" value="提交">&emsp;&emsp;&emsp;</td>
+                <td><input type="submit" value="搜索" name="submit">&emsp;&emsp;&emsp;</td>
+                <td><input type="reset" value="重置"></td>
+            </tr>
+        </table>
+    </form>
+
+{% endblock %}

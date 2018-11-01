@@ -1,0 +1,40 @@
+{% extends 'base.html' %}
+
+
+{% block main %}
+    <br><br><br>
+    <form action="/grade/grade_query/" method="post">
+    {% csrf_token %}
+        <p align="center" style="height: 35px;font-size: 16px;">
+        <label for="condition1" style="font-size: 16px;">请输入查询条件:</label>
+            &emsp;
+        <select id="dd" class="abc" name="test_category">
+            <option value="1">学生编号</option>
+            <option value="2">学生姓名</option>
+        </select>
+            &emsp;
+        <input type="text" name="condition" class="aa" value="{{ code }}"><span id="sspan"></span>
+            &emsp;
+        <input type="submit" value="查询">
+        <input type="reset" value="重置">
+        </p>
+        <table border="3" align="center" cellspacing="0" cellpadding="0" width="700px" style="text-align: center;margin-top: 40px" id="ad">
+            <tr style="height: 35px;font-size: 18px;color: brown">
+                <td>考试类别</td>
+                <td>科目名称</td>
+                <td>学生编号</td>
+                <td>学生姓名</td>
+                <td>成绩</td>
+            </tr>
+            {% for cd in codes %}
+            <tr style="height: 30px;font-size: 15px;">
+                <td>{{ cd.test_category }}</td>
+                <td>{{ cd.course.cour_name }}</td>
+                <td>{{ cd.stu_id }}</td>
+                <td>{{ cd.stu.stu_name }}</td>
+                <td>{{ cd.test_score }}</td>
+            </tr>
+            {% endfor %}
+        </table>
+    </form>
+{% endblock %}

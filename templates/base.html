@@ -1,0 +1,90 @@
+{% load staticfiles %}
+<!DOCTYPE html>
+<html lang="en">
+	<head>
+		<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
+		<meta charset="utf-8" />
+		<title>首页 - 统一开发平台 - UI库</title>
+
+		<meta name="description" content="This is page-header (.page-header &gt; h1)" />
+		<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0" />
+
+		<link rel="stylesheet" href="{% static '' %}bootstrap.min.css" />
+        <link href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet">
+{#		<link rel="stylesheet" href="{% static 'font-awesome.min.css' %}" />#}
+		<link rel="stylesheet" href="{% static '' %}ace.min.css" id="main-ace-style" />
+		<!--[if lte IE 9]>
+			<link rel="stylesheet" href="{% static '' %}ace-part2.min.css" />
+		<![endif]-->
+		<link rel="stylesheet" href="{% static '' %}ace-skins.min.css" />
+		<link rel="stylesheet" href="{% static '' %}ace-rtl.min.css" />
+		<!--[if lte IE 9]>
+		  <link rel="stylesheet" href="{% static '' %}ace-ie.min.css" />
+		<![endif]-->
+		<!--[if lte IE 8]>
+		<script src="{% static '' %}html5shiv.min.js"></script>
+		<script src="{% static '' %}respond.min.js"></script>
+		<![endif]-->
+	</head>
+
+	<body class="no-skin" style="">
+		<div id="navbar" class="navbar navbar-default">
+            {% include 'header.html' %}
+		</div>
+
+		<!-- /section:basics/navbar.layout -->
+		<div class="main-container" id="main-container">
+
+			<!-- #section:basics/sidebar -->
+			<div id="sidebar" class="sidebar responsive">
+
+                {% include 'left.html' %}
+			</div>
+
+			<!-- /section:basics/sidebar -->
+			<div class="main-content">
+				<!-- #section:basics/content.breadcrumbs -->
+				<div class="breadcrumbs" id="breadcrumbs">
+					{% include 'search.html' %}
+				</div>
+
+				<div class="page-content">
+                {% block main %}
+
+                {% endblock %}
+				</div><!-- /.page-content -->
+			</div><!-- /.main-content -->
+
+			<div class="footer">
+                {% include 'footer.html' %}
+			</div>
+
+			<a href="#" id="btn-scroll-up" class="btn-scroll-up btn btn-sm btn-inverse">
+				<i class="ace-icon fa fa-angle-double-up icon-only bigger-110"></i>
+			</a>
+		</div><!-- /.main-container -->
+
+		<!--[if !IE]> -->
+			<script type="text/javascript">
+				window.jQuery || document.write("<script src='{% static '' %}jquery.min.js'>"+"<"+"/script>");
+			</script>
+		<!-- <![endif]-->
+		<!--[if IE]>
+			<script type="text/javascript">
+			 window.jQuery || document.write("<script src='{% static '' %}jquery1x.min.js'>"+"<"+"/script>");
+			</script>
+		<![endif]-->
+		<script type="text/javascript">
+			if('ontouchstart' in document.documentElement) document.write("<script src='{% static '' %}jquery.mobile.custom.min.js'>"+"<"+"/script>");
+		</script>
+		<script src="{% static '' %}bootstrap.min.js"></script>
+		<!--[if lte IE 8]>
+		  <script src="{% static '' %}excanvas.min.js"></script>
+		<![endif]-->
+		<script src="{% static '' %}jquery-ui.custom.min.js"></script>
+		<script src="{% static '' %}jquery.ui.touch-punch.min.js"></script>
+		<script src="{% static '' %}ace-elements.min.js"></script>
+		<script src="{% static '' %}ace.min.js"></script>
+
+	</body>
+</html>

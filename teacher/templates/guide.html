@@ -1,0 +1,50 @@
+{% extends 'base.html' %}
+{% block main %}
+    <form action="/teach/guide/" method="post">
+        {% csrf_token %}
+    <div style="border: 5px solid brown; border-radius: 20px;margin: 80px 20% 0 20%">
+        <label for="" style="margin-left: 20%; margin-top: 20px;">请输入教师编号: <input type="text" name="guide_id"></label>
+        <label for="" style="margin-left: 5%;margin-top: 20px;">班级名称: <select name="clazz" id="">
+        {% for c in cls %}
+            <option value="{{ c.cls_name }}">{{ c.cls_name }}</option>
+        {% endfor %}
+        </select>
+        </label>
+        <label for="" style="margin-left: 20%;">任职日期: <input type="date" name="service_date"></label>
+        <label for="" style="margin-left: 9%;">离职日期: <input type="date" name="lizhi_date"></label>
+        <table border="3" style="width: 800px; text-align: center; margin-top: 50px;font-size: 16px;border-color: #0000FF" cellpadding="0" cellspacing="0" align="center">
+            <tr>
+                <td>教师编号</td>
+                <td>教师姓名</td>
+                <td>性别</td>
+                <td>年龄</td>
+                <td>学历</td>
+                <td>授课专业</td>
+                <td>婚否</td>
+            </tr>
+            {% for txx in teaxinxis %}
+                <tr>
+                    <td>{{ txx.tea_id }}</td>
+                    <td>{{ txx.tea_name }}</td>
+                    <td>{{ txx.tea_gender }}</td>
+                    <td>{{ txx.tea_age }}</td>
+                    <td>{{ txx.tea_edu }}</td>
+                    <td>{{ txx.major.maj_name }}</td>
+                    <td>{{ txx.tea_marry }}</td>
+                </tr>
+            {% endfor %}
+        </table>
+
+        {#        <label for="" style="margin-left: 400px;">专业: <input type="text" name="major"></label>#}
+        {#        <br><br><label for="" style="margin-left: 350px;">年级: <input type="text" name="grade" style="margin-left: 30px;"></label>#}
+
+        <br><br><input type="submit" value="提交" style="margin-left: 35%;margin-bottom: 20px;" name="submit">
+        <input type="reset" value="重置" style="margin-left: 5%;">
+        <a href="/teach/showguide2/" style="margin-left: 5%;margin-bottom: 20px;font-size: 18px;color: red">查询班主任任职情况请点我！</a>
+    </div>
+    </form>
+
+
+{% endblock %}
+
+

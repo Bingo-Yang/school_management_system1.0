@@ -1,0 +1,61 @@
+{% extends 'base.html' %}
+{% load staticfiles %}
+{% block main %}
+    <form action="/book/book_return/" method="post">
+         {% csrf_token %}
+        <hr>
+        <br>
+        <table style="margin: 0 auto;width: 340px">
+{#            搜索功能#}
+            <tr>
+                <td>
+                    <select name="choice" id="addNew">
+                    <option value="book_id">书号</option>
+                    <option value="book_name">图书名</option>
+                    <option value="stu_id">学号</option>
+                    </select>
+                </td>
+                <td><input type="text" name="content">
+                </td>
+                <td><input type="submit" value="查询"></td>
+                <td><a href="/book/book_return/">展示所有</a>
+                </td>
+            </tr>
+
+
+        </table>
+        <br>
+{#        {{ borrow }}#}
+        <table  aline="center" border="5" cellpadding="6" cellspacing="0"  width="900" style="margin: 30px auto;">
+            <tr style="height: 45px;font-size: 18px;">
+                <td style="color: brown;">学号</td>
+                <td style="color: brown;">姓名</td>
+                <td style="color: brown;">书号</td>
+                <td style="color: brown;">书名</td>
+                <td style="color: brown;">作者</td>
+                <td style="color: brown;">种类</td>
+                <td style="color: brown;">登记员</td>
+                <td style="color: brown;">价格</td>
+                <td style="color: brown;">借阅日期</td>
+                <td style="color: brown;">归还日期</td>
+            </tr>
+        {% for foo in borrow %}
+            {% for bo in foo %}
+            <tr style="height: 35px;font-size: 15px;">
+                <td>{{ bo.stu.stu_id}}</td>
+                <td>{{ bo.stu.stu_name }}</td>
+                <td>{{ bo.book.book_id }}</td>
+                <td>{{ bo.book.book_name }}</td>
+                <td>{{ bo.book.book_author }}</td>
+                <td>{{ bo.book.book_category }}</td>
+                <td>{{ bo.registrar }}</td>
+                <td>{{ bo.book.book_price }}</td>
+                <td>{{ bo.borrow_time|date:'Y-m-d' }}</td>
+                <td>{{ bo.return_time|date:'Y-m-d' }}</td>
+            </tr>
+            {% endfor %}
+
+        {% endfor %}
+        </table>
+    </form>
+{% endblock %}

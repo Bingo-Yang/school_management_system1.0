@@ -1,0 +1,45 @@
+{% extends 'base.html' %}
+
+{% block main %}
+    <form action="/archive/teaMaintenance/" method="post">
+
+    {% csrf_token %}
+        <table align="center" width="400px" style="margin-top: 50px; height: 32px;font-size: 15px;">
+            <tr>
+                <td>查询条件:</td>
+                <td>
+                    <select name="select" id="">
+                        <option value="教师编号">教师编号</option>
+                        <option value="教师姓名">教师姓名</option>
+                        <option value="专业名称">专业名称</option>
+                    </select>
+                </td>
+                <td><input type="text" name="query"></td>
+                <td><input type="submit" value="查询" name="submit"></td>
+            </tr>
+        </table>
+    </form>
+        <table align="center" width="1000px" style="margin-top: 60px;text-align: center" border="1">
+            <tr style="height: 32px;font-size: 18px;color: brown;">
+                <td width="65">教师编号</td>
+                <td width="180">教师姓名</td>
+                <td width="180">性&emsp;别</td>
+                <td width="180">身份证号</td>
+                <td width="180">授课专业</td>
+                <td width="65">维护</td>
+            </tr>
+                {% for teacher in teachers %}
+
+                    <tr style="height: 32px;font-size: 18px;">
+                        <td width="65">{{ teacher.tea_id }}</td>
+                        <td>{{ teacher.tea_name }}</td>
+                        <td>{{ teacher.tea_gender }}</td>
+                        <td>{{ teacher.tea_id_num }}</td>
+                        <td>{{ teacher.major.maj_name }}</td>
+                        <td width="65"><a href="/archive/teacher/{{ teacher.tea_id }}"><button>更改</button></a></td>
+                    </tr>
+
+                {% endfor %}
+        </table>
+
+{% endblock %}

@@ -1,0 +1,32 @@
+{% extends 'base.html' %}
+
+{% block main %}
+    <form action="/users/append/" method="post">
+        {% csrf_token %}
+        <div style="border: 3px solid slateblue;border-radius: 50px;margin: 50px 615px 5px 605px">
+        <table align="center" width="400px" style="margin-top: 5px;margin-bottom: 20px">
+            <caption><h2>学生信息注册</h2></caption>
+            <tr>
+                <td><label for="user_id">用户id:</label></td>
+                <td><input type="text" name="user_id" id="user_id"></td>
+            </tr>
+            <tr>
+                <td><label for="una">用户名:</label></td>
+                <td><input type="text" name="user_name" id="una"></td>
+            </tr>
+            <tr>
+                <td><label for="pwd">密&emsp;码:</label></td>
+                <td><input type="password" name="user_password" id="pwd"></td>
+            </tr>
+            <tr>
+                <td><label for="pwd2">确认密码:</label></td>
+                <td><input type="password" name="user_nickname" id="pwd2"></td>
+            </tr>
+            <tr >
+                <td><input type="submit" value="注册"></td>
+                <td><input type="reset" value="重置"></td>
+            </tr>
+        </table>
+        </div>
+    </form>
+{% endblock %}

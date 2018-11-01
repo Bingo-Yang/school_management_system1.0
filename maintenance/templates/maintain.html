@@ -1,0 +1,23 @@
+{% extends 'base.html' %}
+
+
+
+{% block main %}
+
+<table align="center" width="700px" style="text-align: center;" border="1" cellspacing="0" cellpadding="0">
+    <tr>
+        <td>专业代码</td>
+        <td>专业名称</td>
+        <td colspan="2">用户操作</td>
+    </tr>
+    {% for m in majors %}
+    <tr>
+        <td>{{ m.maj_id }}</td>
+        <td>{{ m.maj_name }}</td>
+        <td><a href="/maintenance/change/{{ m.maj_id }}/{{ m.maj_name }}/1"><button >修改</button></a></td>
+        <td><a href="/maintenance/change/{{ m.maj_id }}/{{ m.maj_name }}/2"><button >删除</button></a></td>
+    </tr>
+    {% endfor %}
+</table>
+
+{% endblock %}

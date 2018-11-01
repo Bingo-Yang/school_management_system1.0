@@ -1,0 +1,202 @@
+{% load staticfiles %}
+<link href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet">
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<title></title>
+        <style type="text/css">
+        	body{
+        		background-image: url(/static/admin-login-bg.jpg);
+        		background-repeat: no-repeat;
+        		background-size: cover;
+        		color: black;
+        	}
+        	div{
+                background-image: url(/static/admin-loginform-bg.png);
+        		width: 617px;
+        		height: 360px;
+        		margin: 10px auto;
+        		margin-top: 270px;
+        		border-radius: 5px;
+        	}
+        	table{
+        		margin: 10px auto;
+        		margin-top: 10px;
+        	}
+        	tr{
+        		height: 60px;
+        	}
+        	span{
+        		font-size: 18px;
+        		color: greenyellow;
+        	}
+            .beg{
+                font-size: 23px;
+                align-content: center;
+            }
+        	input[type="text"]{
+        		width: 250px;
+        		height: 40px;
+                font-size: 18px;
+        		border-radius: 3px;
+        	}
+        	input[type="password"]{
+        		width: 250px;
+        		height: 40px;
+                font-size: 18px;
+        		border-radius: 3px;
+        	}
+        	#code{
+        		width: 80px;
+        	}
+        	#codeVal{
+        		font-size: 22px;
+        		color: black;
+        		background-image: url(/static/shantu.gif);
+				background-repeat: no-repeat;
+				background-size: cover;
+        	}
+        	#generateCode1{
+        		text-decoration: underline;
+        		cursor: pointer;
+        	}
+            .box{
+                color: red;
+            }
+        	/*option{
+        		text-align: center;
+        	}????*/
+        </style>
+        <script type="text/javascript">
+        	//验证用户名
+        	function checkUname(){
+        		//0.定义正则规则
+        		var reg=/^[\u4e00-\u9fa5]{2,15}$/;
+        		//1.调用封装的方法进行验证
+        		return checkField(reg,"uname");
+
+				}
+
+        	//数据项验证方法的封装
+        	function checkField(reg,obj){
+        		//1.获取要验证的元素的值
+        		var val=document.getElementById(obj).value;
+        		//2.获取用于给出验证提示信息的元素对象
+        		var spanObj=document.getElementById(obj+"Span");
+
+				if(val==""){// 空验证
+					spanObj.innerHTML=dataName+"不能为空";
+					spanObj.style.color="red";
+					return false;
+				}else if(reg.test(val)){
+					//引入正则表达式来解决
+					spanObj.innerHTML="ok";
+					spanObj.style.color="green";
+					return true;
+				}else{
+					spanObj.innerHTML="格式不符合要求";
+					spanObj.style.color="red";
+					return false;
+				}
+        	}
+        	//验证密码
+        	function checkPwd(){
+        		//0.定义正则规则
+        		var reg=/^\w{6,8}$/;
+        		return checkField(reg,"pwd")&&checkPwd2();
+        	}
+
+        	//声明一个全局变量  存储验证码
+        	var globalCode="";
+        	//生成一个4位整数的随机验证码  1000-9999
+        	function generateCode(){
+        		globalCode=parseInt(Math.random()*9000+1000);
+        		//获取用于存储验证码的元素对象
+        		var codeObj=document.getElementById("codeVal");
+        		//把验证码设置为 存储验证码的元素对象 的内容
+        		codeObj.innerHTML=globalCode;
+        	}
+        	function checkCode(){
+        		var val=document.getElementById("code").value;
+        		var codeObj=document.getElementById("codeTips");
+				if(val==""){// 空验证
+					codeObj.innerHTML="验证码不能为空";
+					codeObj.style.color="red";
+					return false;
+				}else if(val==globalCode){
+					codeObj.innerHTML="ok";
+					codeObj.style.color="green";
+					return true;
+				}else{
+					codeObj.innerHTML="输入验证码不一致";
+					codeObj.style.color="red";
+					return false;
+				}
+        	}
+
+        	//按钮提交前  再对所有数据项的格式做一下验证     都通过  才能提交    否则不让提交
+        	function checkAll(){
+        		var flag=checkPwd2()&checkCode()&checkPwd()&checkUname();
+        		return flag==1?true:false;
+        	}
+        	function checkReset(){
+        		var flag=window.confirm("您确认重置吗？");
+        		return flag;
+        	}
+        </script>
+	</head>
+	<body onload="generateCode();">
+		<form action="/login/" onsubmit="return checkAll();" onreset="return checkReset();" method="post" enctype="multipart/form-data">
+            {% csrf_token %}
+			<div>
+				<table >
+                    <tr>
+                        <th colspan="2">
+                            <span style="color: red" class="beg">欢迎登录校园管理系统</span>
+                        </th>
+                    </tr>
+					<tr>
+						<th><a class="menu-icon fa fa-user" style="font-size: 20px">  用户名:</a></th>
+						<td>
+							<input type="text" id="uname" value={{ uname }} name="uname" onblur="checkUname();" alt="用户名" placeholder="汉字2-15"/>
+{#							<span id="unameSpan">*必填项，汉字2-15*</span>#}
+						</td>
+					</tr>
+					<tr>
+						<th><a class="menu-icon fa fa-lock" style="font-size: 20px">  密&emsp;码:</a></th>
+						<td>
+							<input type="password" id="pwd" value={{ pwd }} name="pwd" onblur="checkPwd();" alt="密码" placeholder="数字，字母，下划线6-8个"/>
+{#							<span id="pwdSpan">*必填项，数字，字母，下划线6-8个*</span>#}
+						</td>
+					</tr>
+					<tr>
+						<th><a style="font-size: 20px">验证码:</a></th>
+						<td>
+							<input type="text" name="code" id="code" onblur="checkCode();" maxlength="4" />
+							<span id="codeVal">1111</span>
+							<span id="generateCode1" onclick="generateCode();">看不清，换一张</span>
+							<span id="codeTips"></span>
+						</td>
+					</tr>
+					<tr>
+						<th colspan="3">
+                            {% if remember == '1' %}
+                                <input type="checkbox" name="remember" id="" checked  >记住密码
+                            {% else %}
+                                <input type="checkbox" name="remember" id="" >记住密码
+                            {% endif %}
+							<input type="submit"  id="sub" value="登录" style="font-size: 20px" />
+							<input type="reset"  id="ret" value="重置"  style="font-size: 20px"/>
+						</th>
+					</tr>
+                    <tr>
+                        <th colspan="2">
+                            <span style="font-size: 25px"  class="box">用户名或密码不匹配,请重新登录</span>
+                        </th>
+                    </tr>
+				</table>
+			</div>
+		</form>
+	</body>
+</html>

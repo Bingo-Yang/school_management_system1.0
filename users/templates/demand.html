@@ -1,0 +1,33 @@
+{% extends 'base.html' %}
+
+{% block main %}
+    <form action="/users/demand/" method="post">
+        {% csrf_token %}
+         <table align="center" width="400px" style="margin-top: 60px">
+            <tr>
+                <td>查询条件:</td>
+                <td>
+                    <select name="demand" id="">
+                        <option value="所有用户">所有用户</option>
+                        <option value="用户编号">用户编号</option>
+                        <option value="用户名">用户名</option>
+                    </select>
+                </td>
+                <td><input type="text" name="query"></td>
+                <td><input type="submit" value="查询" name="submit"></td>
+            </tr>
+        </table>
+        <table align="center" width="400px" style="margin-top: 60px" border="1">
+            <tr align="center" style="height: 30px;font-size: 18px;color: brown;">
+                <td>用户名</td>
+                <td>操作</td>
+            </tr>
+            {% for user in users %}
+                <tr align="center" style="height: 30px;font-size: 16px;">
+                    <td>{{ user.user_name }}</td>
+                    <td><a href="/users/demand/{{ user.user_id }}"><button>删除</button></a></td>
+                </tr>
+            {% endfor %}
+        </table>
+    </form>
+{% endblock %}

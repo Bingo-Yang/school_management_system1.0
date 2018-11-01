@@ -1,0 +1,56 @@
+{% extends 'base.html' %}
+
+{% block main %}
+    <form action="/archive/maintenance/" method="post" >
+    {% csrf_token %}
+        <table align="center" width="400px" style="margin-top: 60px; height: 32px;font-size: 15px;" >
+            <tr >
+                <td>查询条件:</td>
+                <td>
+                    <select name="select" id="">
+                        <option value="学生编号">学生编号</option>
+                        <option value="学生姓名">学生姓名</option>
+                        <option value="班级名称">班级名称</option>
+                        <option value="身份证号">身份证号</option>
+                    </select>
+                </td>
+                <td><input type="text" name="query"></td>
+                <td><input type="submit" value="查询" name="submit"></td>
+
+            </tr>
+        </table>
+        <table align="center" width="1000px" style="margin-top: 60px;text-align: center" border="1">
+            <tr style="height: 30px;font-size: 18px;color: brown;">
+                <td width="65">学生编号</td>
+                <td width="180">学生姓名</td>
+                <td width="180">身份证号</td>
+                <td width="180">出生日期</td>
+                <td width="180">家庭住址</td>
+                <td width="65">操作选择</td>
+            </tr>
+            {% for stu in stus %}
+                {% if stu.stu_id == num %}
+                    <tr style="height: 30px;font-size: 16px;">
+                        <td width="65">{{ stu.stu_id }}</td>
+                        <td><input type="text" value="{{ stu.stu_name }}" name="name"></td>
+                        <td><input type="text" value="{{ stu.stu_id_num }}" name="id_num"></td>
+                        <td><input type="text" value="{{ stu.stu_birthday|date:'Y-m-d' }}" name="birth"></td>
+                        <td><input type="text" value="{{ stu.stu_addr }}" name="addr"><input type="text" value="{{ stu.stu_id }}" name="id" style="display: none"></td>
+                        <td width="65"><input type="submit" value="提交" name="submit"></td>
+                    </tr>
+
+                {% else %}
+
+                    <tr style="height: 30px;font-size: 16px;margin-bottom: 20px;">
+                        <td width="65">{{ stu.stu_id }}</td>
+                        <td>{{ stu.stu_name }}</td>
+                        <td>{{ stu.stu_id_num }}</td>
+                        <td>{{ stu.stu_birthday|date:'Y-m-d' }}</td>
+                        <td>{{ stu.stu_addr }}</td>
+                        <td width="65"><a href="/archive/maintenance/{{ stu.stu_id }}">维护</a></td>
+                    </tr>
+                {% endif %}
+            {% endfor%}
+        </table>
+   </form>
+{% endblock %}

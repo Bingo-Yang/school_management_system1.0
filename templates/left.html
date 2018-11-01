@@ -1,0 +1,337 @@
+{% load staticfiles %}
+
+<ul class="nav nav-list" style="top: 0px;">
+{#    校园管理系统#}
+    <li class="active">
+        <a href="index.html">
+            <i class="menu-icon fa fa-university"></i>
+            <span class="menu-text"> 校园管理系统 </span>
+        </a>
+
+        <b class="arrow"></b>
+    </li>
+
+{#    档案管理#}
+    <li class="hsub">
+        <a href="#" class="dropdown-toggle">
+            <i class="menu-icon fa fa-database"></i>
+            <span class="menu-text"> 档案管理 </span>
+
+            <b class="arrow fa fa-angle-down"></b>
+        </a>
+
+        <b class="arrow"></b>
+
+        <ul class="submenu">
+
+            <li class="">
+                <a href="{% url 'student' %}">
+                    <i class="menu-icon fa fa-caret-right"></i>
+                    学生信息注册
+                </a>
+
+                <b class="arrow"></b>
+            </li>
+
+            <li class="">
+                <a href="{% url 'register' %}">
+                    <i class="menu-icon fa fa-caret-right"></i>
+                    学生入校登记
+                </a>
+
+                <b class="arrow"></b>
+            </li>
+
+            <li class="">
+                <a href="/archive/maintenance/">
+                    <i class="menu-icon fa fa-caret-right"></i>
+                    学生信息维护
+                </a>
+
+                <b class="arrow"></b>
+            </li>
+
+            <li class="">
+                <a href="{% url 'query' %}">
+                    <i class="menu-icon fa fa-caret-right"></i>
+                    学生登记查询
+                </a>
+
+                <b class="arrow"></b>
+            </li>
+
+            <li class="">
+                <a href="/archive/teacher/">
+                    <i class="menu-icon fa fa-caret-right"></i>
+                    教师基本信息
+                </a>
+
+                <b class="arrow"></b>
+            </li>
+
+            <li class="">
+                <a href="{% url 'teaMaintenance' %}">
+                    <i class="menu-icon fa fa-caret-right"></i>
+                    教师信息维护
+                </a>
+
+                <b class="arrow"></b>
+
+        </ul>
+    </li>
+
+{#    成绩管理#}
+    <li class="hsub">
+        <a href="#" class="dropdown-toggle">
+            <i class="menu-icon fa fa-graduation-cap"></i>
+            <span class="menu-text"> 成绩管理 </span>
+
+            <b class="arrow fa fa-angle-down"></b>
+        </a>
+
+        <b class="arrow"></b>
+
+        <ul class="submenu">
+
+            <li class="">
+                <a href="/grade/grade_register/">
+                    <i class="menu-icon fa fa-caret-right"></i>
+                    成绩录入
+                </a>
+
+                <b class="arrow"></b>
+            </li>
+
+            <li class="">
+                <a href="/grade/grade_query/">
+                    <i class="menu-icon fa fa-caret-right"></i>
+                    成绩查询
+                </a>
+
+                <b class="arrow"></b>
+            </li>
+
+            <li class="">
+                <a href="/grade/grade_claz/">
+                    <i class="menu-icon fa fa-caret-right"></i>
+                    班级成绩统计
+                </a>
+
+                <b class="arrow"></b>
+            </li>
+
+            <li class="">
+                <a href="/grade/grade_clazz/">
+                    <i class="menu-icon fa fa-caret-right"></i>
+                    年级成绩统计
+                </a>
+
+                <b class="arrow"></b>
+            </li>
+        </ul><!-- /.nav-list -->
+    </li>
+
+
+{#    教职工管理#}
+    <li class="hsub">
+        <a href="#" class="dropdown-toggle">
+            <i class="menu-icon fa fa-users"></i>
+            <span class="menu-text"> 教职工管理 </span>
+
+            <b class="arrow fa fa-angle-down"></b>
+        </a>
+
+        <b class="arrow"></b>
+
+        <ul class="submenu">
+
+            <li class="">
+                <a href="/teach/show/">
+                    <i class="menu-icon fa fa-caret-right"></i>
+                    教职任课
+                </a>
+
+                <b class="arrow"></b>
+            </li>
+
+            <li class="">
+                <a href="/teach/coursetea/">
+                    <i class="menu-icon fa fa-caret-right"></i>
+                    任课老师查询
+                </a>
+
+                <b class="arrow"></b>
+            </li>
+
+            <li class="">
+                <a href="/teach/guide/">
+                    <i class="menu-icon fa fa-caret-right"></i>
+                    班主任任职
+                </a>
+
+                <b class="arrow"></b>
+            </li>
+
+            <li class="">
+                <a href="/teach/showguide/">
+                    <i class="menu-icon fa fa-caret-right"></i>
+                    班主任查询
+                </a>
+
+                <b class="arrow"></b>
+            </li>
+        </ul><!-- /.nav-list -->
+    </li>
+
+
+{#    图书馆管理#}
+    <li class="hsub">
+        <a href="#" class="dropdown-toggle">
+            <i class="menu-icon fa fa-book"></i>
+            <span class="menu-text"> 图书馆管理 </span>
+
+            <b class="arrow fa fa-angle-down"></b>
+        </a>
+
+        <b class="arrow"></b>
+
+        <ul class="submenu">
+
+            <li class="">
+                <a href="/book/book_register/">
+                    <i class="menu-icon fa fa-caret-right"></i>
+                    图书登记
+                </a>
+
+                <b class="arrow"></b>
+            </li>
+
+            <li class="">
+                <a href="/book/book_show/">
+                    <i class="menu-icon fa fa-caret-right"></i>
+                    图书维护
+                </a>
+
+                <b class="arrow"></b>
+            </li>
+
+            <li class="">
+                <a href="/book/book_Borrow/">
+                    <i class="menu-icon fa fa-caret-right"></i>
+                    借阅归还
+                </a>
+
+                <b class="arrow"></b>
+            </li>
+
+
+           <li class="">
+                <a href="/book/book_return/">
+                    <i class="menu-icon fa fa-caret-right"></i>
+                    借阅查询
+                </a>
+
+                <b class="arrow"></b>
+            </li>
+        </ul><!-- /.nav-list -->
+    </li>
+
+{#    用户管理#}
+    <li class="hsub">
+        <a href="#" class="dropdown-toggle">
+            <i class="menu-icon fa fa-user-plus"></i>
+            <span class="menu-text"> 用户管理 </span>
+
+            <b class="arrow fa fa-angle-down"></b>
+        </a>
+
+        <b class="arrow"></b>
+
+        <ul class="submenu">
+
+            <li class="">
+                <a href="/users/append/">
+                    <i class="menu-icon fa fa-caret-right"></i>
+                    用户维护
+                </a>
+
+                <b class="arrow"></b>
+            </li>
+
+            <li class="">
+                <a href="/users/demand/">
+                    <i class="menu-icon fa fa-caret-right"></i>
+                    用户查询
+                </a>
+
+                <b class="arrow"></b>
+            </li>
+        </ul><!-- /.nav-list -->
+    </li>
+
+{#    代码维护#}
+    <li class="hsub">
+        <a href="#" class="dropdown-toggle">
+            <i class="menu-icon fa fa-code"></i>
+            <span class="menu-text"> 代码维护 </span>
+
+            <b class="arrow fa fa-angle-down"></b>
+        </a>
+
+        <b class="arrow"></b>
+
+        <ul class="submenu">
+
+            <li class="">
+                <a href="/maintenance/maintain/">
+                    <i class="menu-icon fa fa-caret-right"></i>
+                    专业代码维护
+                </a>
+
+                <b class="arrow"></b>
+            </li>
+
+            <li class="">
+                <a href="/maintenance/grade/">
+                    <i class="menu-icon fa fa-caret-right"></i>
+                    年级代码维护
+                </a>
+
+                <b class="arrow"></b>
+            </li>
+
+            <li class="">
+                <a href="/maintenance/clazz/">
+                    <i class="menu-icon fa fa-caret-right"></i>
+                    班级代码维护
+                </a>
+
+                <b class="arrow"></b>
+            </li>
+
+            <li class="">
+                <a href="/maintenance/course/">
+                    <i class="menu-icon fa fa-caret-right"></i>
+                    学科代码维护
+                </a>
+
+                <b class="arrow"></b>
+            </li>
+        </ul><!-- /.nav-list -->
+    </li>
+
+{#      系统信息#}
+    <li class="hsub">
+        <a href="#" class="dropdown-toggle">
+            <i class="menu-icon fa fa-connectdevelop"></i>
+            <span class="menu-text"> 系统信息 </span>
+        </a>
+
+        <b class="arrow"></b>
+
+    </li>
+</ul>
+<!-- #section:basics/sidebar.layout.minimize -->
+<div class="sidebar-toggle sidebar-collapse" id="sidebar-collapse">
+    <i class="ace-icon fa fa-angle-double-left" data-icon1="ace-icon fa fa-angle-double-left" data-icon2="ace-icon fa fa-angle-double-right"></i>
+</div>

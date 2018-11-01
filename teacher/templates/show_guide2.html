@@ -1,0 +1,43 @@
+{% extends 'base.html' %}
+{% block main %}
+     <form action="/teach/showguide2/" method="post">
+     {% csrf_token %}
+    <div style="border: 5px solid brown; border-radius: 20px;margin: 80px 20% 0 20%">
+         <label for="" style="margin-left: 30%; margin-top: 20px;">请输入教师编号: <input type="text" name="ht_id"><input
+             type="submit" value="查询"></label>
+         <hr>
+    <table  border="3" style="width: 800px; text-align: center; margin-top: 50px;font-size: 16px;border-color: #0000FF" cellpadding="0" cellspacing="0" align="center">
+        <tr>
+             <td>教师姓名</td>
+             <td>性别</td>
+             <td>年龄</td>
+             <td>学历</td>
+             <td>授课专业</td>
+             <td>任职班级名称</td>
+             <td>婚否</td>
+             <td>专业</td>
+             <td>年级</td>
+             <td>任职日期</td>
+        </tr>
+        {% for hr in htr %}
+        <tr>
+             <td>{{hr.teacher.tea_name}}</td>
+             <td>{{ hr.teacher.tea_gender }}</td>
+             <td>{{ hr.teacher.tea_age }}</td>
+             <td>{{ hr.teacher.tea_edu }}</td>
+             <td>{{ hr.teacher.major.maj_name }}</td>
+             <td>{{ hr.clazz.cls_name }}</td>
+             <td>{{ hr.teacher.tea_marry }}</td>
+             <td>{{ hr.teacher.major.maj_name}}</td>
+             <td>{{ hr.clazz.grade.gra_name }}</td>
+             <td>{{ hr.ht_in_date}}</td>
+        </tr>
+        {% endfor %}
+    </table>
+        <a href="/teach/guide/" style="margin-left: 50%;margin-bottom:20px;font-size: 18px;color: red">返回</a>
+    </div>
+    </form>
+
+
+{% endblock %}
+

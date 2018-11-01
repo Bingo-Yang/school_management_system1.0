@@ -1,0 +1,23 @@
+{% extends 'base.html' %}
+
+
+
+{% block main %}
+
+<table align="center" width="700px" style="text-align: center;" border="1" cellspacing="0" cellpadding="0">
+    <tr>
+        <td>年级代码</td>
+        <td>年级名称</td>
+        <td colspan="2">用户操作</td>
+    </tr>
+    {% for m in grades %}
+    <tr>
+        <td>{{ m.gra_id }}</td>
+        <td>{{ m.gra_name }}</td>
+        <td><a href="/maintenance/change1/{{ m.gra_id }}/{{ m.gra_name }}/1"><button >修改</button></a></td>
+        <td><a href="/maintenance/change1/{{ m.gra_id }}/{{ m.gra_name }}/2"><button >删除</button></a></td>
+    </tr>
+    {% endfor %}
+</table>
+
+{% endblock %}

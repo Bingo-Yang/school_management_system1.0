@@ -1,0 +1,48 @@
+{% extends 'base.html' %}
+
+
+{% block main %}
+    <form action="/archive/register/" method="post">
+    <div style="border: 5px solid brown; border-radius: 20px;margin: 80px 20% 0 20%">
+        {% csrf_token %}
+        <table align="center" width="700px" style="margin-top: 20px">
+            <caption><h2>学生入学登记</h2></caption>
+            <tr style="height: 50px;" >
+                <td width="130"></td>
+                <td width="65">学生编号</td>
+                <td width="80"><input type="text" name="id" value="{{ stu.stu_id }}"></td>
+                <td width="10"></td>
+                <td width="20"><input type="submit" value="确定" name="submit"></td>
+                <td width="20"></td>
+                <td><input type="submit" value="重置" name="submit"></td>
+            </tr>
+        </table>
+        <table align="center" width="700px" style="margin-top: 20px;">
+            <tr style="height: 30px">
+                <td><laber for="na">学生姓名</laber></td>
+                <td><input type="text" name="name" id="na" value="{{ stu.stu_name }}"></td>
+                <td><laber for="cls">班级名称</laber></td>
+                <td><input type="text" name="clazz" id="cls" value="{{ stu.clazz.cls_name }}"></td>
+            </tr>
+            <tr style="height: 30px">
+                <td><laber for="mj">专业名称</laber></td>
+                <td><input type="text" name="major" id="mj" value="{{ stu.clazz.major }}" ></td>
+                <td><laber for="en">入学日期</laber></td>
+                <td><input type="date" name="enrollment" id="en"></td>
+            </tr>
+            <tr style="height: 30px">
+                <td><laber for="sc">入学分数</laber></td>
+                <td><input type="text" name="score" id="sc"></td>
+                <td><laber for="re">经办人</laber></td>
+                <td><input type="text" name="recommender" id="re"></td>
+            </tr>
+        </table>
+       <table align="center" width="700px" style="margin-top: 20px;margin-bottom: 20px;">
+            <tr >
+                <td width="270px"></td>
+                <td><input type="submit" value="提交" name="submit"></td>
+            </tr>
+        </table>
+    </div>
+    </form>
+{% endblock %}

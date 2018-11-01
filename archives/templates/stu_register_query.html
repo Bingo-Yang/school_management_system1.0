@@ -1,0 +1,51 @@
+{% extends 'base.html' %}
+
+{% block main %}
+    <form action="/archive/query/" method="post" >
+        {% csrf_token %}
+        <table align="center" width="500px" style="margin-top: 50px; height: 32px;font-size: 15px; ">
+            <tr>
+                <td width="70px">查询字段:</td>
+                <td width="70px">
+                    <select name="field" id="">
+                        <option value="学生编号">学生编号</option>
+                        <option value="入学日期">入学日期</option>
+                        <option value="录取分数">录取分数</option>
+                    </select>
+                </td>
+                <td width="52px">运算符:</td>
+                <td width="40px">
+                    <select name="operator" id="">
+                        <option value="大于">大于</option>
+                        <option value="等于">等于</option>
+                        <option value="小于">小于</option>
+                    </select>
+                </td>
+                <td width="80px"><input type="text" name="message"></td>
+                <td><input type="submit" value="查询"></td>
+            </tr>
+        </table>
+        <table align="center" width="850px" style="margin-top: 20px;text-align: center" border="1">
+            <tr style="height: 32px;font-size: 20px;color: brown;">
+                <td>学生编号</td>
+                <td>学生姓名</td>
+                <td>身份证号</td>
+                <td>出生日期</td>
+                <td>入学日期</td>
+                <td>录取分数</td>
+                <td>经办人</td>
+            </tr>
+            {% for stu in stus %}
+                <tr style="height: 32px;font-size: 20px;">
+                    <td>{{ stu.stu_id }}</td>
+                    <td>{{ stu.stu_name }}</td>
+                    <td>{{ stu.stu_id_num }}</td>
+                    <td>{{ stu.stu_birthday }}</td>
+                    <td>{{ stu.sturegister.stu_enrollment }}</td>
+                    <td>{{ stu.sturegister.stu_score }}</td>
+                    <td>{{ stu.sturegister.stu_recommender }}</td>
+                </tr>
+             {% endfor %}
+        </table>
+    </form>
+{% endblock %}

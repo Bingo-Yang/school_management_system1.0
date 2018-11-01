@@ -1,0 +1,40 @@
+{% extends 'base.html' %}
+{% load staticfiles %}
+{% block main %}
+{#  图书借阅归还信息登记  #}
+
+    <form action="/book/book_Borrow/"  method="post" >
+        <br><br>
+        <div style="border: 5px solid blueviolet ; border-radius: 40px;margin: 100px 30% 0 25%">
+        <table aline="center"  border="0" cellpadding="6" cellspacing="2" width="600" style="margin: 30px auto 0;">
+        {% csrf_token %}
+            <tr style="height: 32px;font-size: 20px;">
+                <td style="color: brown;">学号：</td>
+                <td><input type="text" name="stu_id"></td>
+                <td style="color: brown;">书号：</td>
+                <td><input type="text" name="book_id"></td>
+            </tr>
+            <tr style="height: 32px;font-size: 20px;">
+                <td style="color: brown;">借阅日期：</td>
+                <td><input type="date" name="borrow_time"></td>
+                <td style="color: brown;">归还日期：</td>
+                <td><input type="date" name="return_time"></td>
+            </tr>
+            <tr style="height: 32px;font-size: 20px;">
+                <td style="color: brown;">登记员：</td>
+                <td><input type="text" name="registrar"></td>
+                <td style="color: brown;">借阅号：</td>
+                <td><input type="text" name="borrow_id"></td>
+            </tr>
+        </table>
+        <br><br>
+
+        <table style="margin: 0 300px 40px 330px;">
+             <tr>
+                 <td>&emsp;&emsp;<input type="submit" value="保存"></td>
+                 <td>&emsp;&emsp;<input type="reset" value="重置"></td>
+             </tr>
+        </table>
+        </div>
+    </form>
+{% endblock %}
